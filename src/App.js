@@ -8,6 +8,7 @@ import CompanyPage from "./CompanyPage"
 function App() {
   return (
     <div className = 'main'>
+      <Link to = "/companies">companies</Link>
       <BrowserRouter>
         <Route exact path="/"> <Home /></Route>
         <Route exact path ="/companies"> <Companies /></Route>
