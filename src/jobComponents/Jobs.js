@@ -6,6 +6,7 @@ const Jobs = () => {
     useEffect(() => {
         const getAllJobs = async() => {
             const res = await JoblyApi.getAllJobs()
+
             setJobs(...jobs,res)
         }
         getAllJobs()

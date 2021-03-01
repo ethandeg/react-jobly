@@ -12,11 +12,11 @@ const LoginForm = () => {
     return (
         <>
         <h1>Hello, World from the login form</h1>
-        <form>
+        <form className = "form-control">
             <label htmlFor="username">Username:</label>
-            <input type="text" name='username' id='username' value = {formData.username}onChange={handleChange} />
+            <input className = "form-control" type="text" name='username' id='username' value = {formData.username}onChange={handleChange} />
             <label htmlFor="password">Password:</label>
-            <input type="password" name='password' id='password' value={formData.password} onChange={handleChange} />
+            <input className = "form-control" type="password" name='password' id='password' value={formData.password} onChange={handleChange} />
             <button>Login</button>
         </form>
         </>

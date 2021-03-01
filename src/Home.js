@@ -1,8 +1,8 @@
 const Home = () => {
     return (
-        <>
-        <h1>Hello from the home page</h1>
-        </>
+        <div className = "container-fluid bg-light">
+        <h1>Welcome to Jobly!</h1>
+        </div>
     )
 }
 
