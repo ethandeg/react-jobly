@@ -9,8 +9,6 @@ const Company = (props) => {
             <li>{numEmployees}</li>
             <li>{logoUrl}</li>
             <li>{description}</li>
-            {/* {jobs.map(job => <p>{job.id} 
-            {job.title}, {job.salary}, {job.equity}</p>)} */}
         </ul>
         {jobs ? jobs.map(job => (
             <div>

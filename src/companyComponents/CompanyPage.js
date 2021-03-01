@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom"
 import {useEffect, useState} from "react"
-import JoblyApi from "./API"
+import JoblyApi from "../API"
 import Company from "./Company"
 const CompanyPage = () => {
     const [company, setCompany] = useState(null)

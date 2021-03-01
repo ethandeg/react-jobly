@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react"
-import JoblyApi from "./API"
+import JoblyApi from "../API"
 import Company from "./Company"
 
 const Companies = () => {

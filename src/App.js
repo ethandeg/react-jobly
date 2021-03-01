@@ -2,10 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter, Link, Route} from "react-router-dom"
 import Home from "./Home"
-import Companies from "./Companies"
-import CompanyPage from "./CompanyPage"
-import Jobs from "./Jobs"
-import JobPage from "./JobPage"
+import Companies from "./companyComponents/Companies"
+import CompanyPage from "./companyComponents/CompanyPage"
+import Jobs from "./jobComponents/Jobs"
+import JobPage from "./jobComponents/JobPage"
 
 function App() {
   return (

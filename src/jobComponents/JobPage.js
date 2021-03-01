@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom"
 import {useState, useEffect} from "react"
-import JoblyApi from "./API"
+import JoblyApi from "../API"
 import Job from "./Job"
 const JobPage = () => {
     const {id} = useParams()
