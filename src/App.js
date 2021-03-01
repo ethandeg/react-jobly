@@ -5,6 +5,7 @@ import Home from "./Home"
 import Companies from "./Companies"
 import CompanyPage from "./CompanyPage"
 import Jobs from "./Jobs"
+import JobPage from "./JobPage"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path ="/companies"> <Companies /></Route>
         <Route exact path ="/companies/:handle"> <CompanyPage /></Route>
         <Route exact path ="/jobs"> <Jobs /></Route>
+        <Route exact path = "/jobs/:id"> <JobPage /></Route>
       </BrowserRouter>
     </div>
   );

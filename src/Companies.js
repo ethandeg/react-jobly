@@ -7,8 +7,8 @@ const Companies = () => {
     useEffect(() => {
         const getCompanies =  async() => {
             const res = await JoblyApi.getAllCompanies()
+            console.log(res)
             setCompanies(...companies, res)
-            console.log(companies)
         }
         getCompanies()
     },[]) 
@@ -21,7 +21,7 @@ const Companies = () => {
     return (
         <>
         {companies.length ? 
-        companies.map(company => <Company company={company}/>)
+        companies.map(company => <Company company={company} key={company.handle}/>)
         : <h1>Loading</h1>}
         </>
     )
