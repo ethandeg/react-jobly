@@ -41,17 +41,14 @@ class JoblyApi {
     return res.company;
   }
 
-  static async getAllCompanies(data) {
-    let res;
-    if(data) res = await this.request('companies', data)
-    else res = await this.request('companies')
+  static async getAllCompanies(filters) {
+    console.log(filters)
+    let res = await this.request('companies', filters)
     return res.companies
   }
 
-  static async getAllJobs(data) { 
-    let res = await this.request('jobs', data)
-    console.log(data)
-    console.log(res.jobs)
+  static async getAllJobs() { 
+    let res = await this.request('jobs')
     return res.jobs
   }
 

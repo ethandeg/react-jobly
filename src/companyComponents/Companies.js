@@ -4,20 +4,20 @@ import Company from "./Company"
 import CompanySearchForm from "./CompanySearchForm"
 
 const Companies = () => {
-    const [data, setData] = useState({})
     const [companies, setCompanies] = useState([])
-    const search = (d) => {
+    const search = async(d) => {
         console.log(d)
-        setData(d)
-        console.log(data)
+        const res = await JoblyApi.getAllCompanies(d)
+        console.log(res)
+        setCompanies(res)
     }
     useEffect(() => {
         const getCompanies =  async() => {
-            const res = await JoblyApi.getAllCompanies(data)
-            setCompanies(...companies, res)
+            const res = await JoblyApi.getAllCompanies()
+            setCompanies(res)
         }
         getCompanies()
-    },[data]) 
+    },[])
 
     // handle,
     //                    name,

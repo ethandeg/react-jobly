@@ -1,7 +1,7 @@
 import {useState} from "react"
 
 const CompanySearchForm = ({search}) => {
-    const INITIAL_STATE = {name: '', minEmployees: '', maxEmployees: ''}
+    const INITIAL_STATE = {name: '', minEmployees: 0, maxEmployees: 0}
     const [formData, setFormData] = useState(INITIAL_STATE)
     const handleChange = e => {
     const {name, value} = e.target;
