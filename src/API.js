@@ -42,13 +42,24 @@ class JoblyApi {
   }
 
   static async getAllCompanies(filters) {
-    console.log(filters)
     let res = await this.request('companies', filters)
     return res.companies
   }
 
-  static async getAllJobs() { 
-    let res = await this.request('jobs')
+  static async getAllJobs(filters) { 
+    //filter jobs by    
+    //  "minSalary": {
+    //   "type": "integer",
+    //   "minimum": 0
+    // },
+    // "hasEquity": {
+    //   "type": "boolean"
+    // },
+    // "title": {
+    //   "type": "string",
+    //   "minLength": 1
+    // }
+    let res = await this.request('jobs', filters)
     return res.jobs
   }
 
