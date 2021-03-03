@@ -1,7 +1,7 @@
 import {useContext} from "react"
 import {useHistory} from "react-router-dom"
 import TokenContext from "./context/TokenContext"
-import UserContext from "./context/TokenContext"
+import UserContext from "./context/UserContext"
 import JoblyApi from "./API"
 const Profile = ({logout}) => {
     const history = useHistory()
@@ -13,9 +13,6 @@ const Profile = ({logout}) => {
             history.push('/')
         }
     }
-    console.log(currentUser)
-    console.log(token)
-    console.log(setCurrentUser)
     return (
         <>
         <h1>Hello, World! from profile</h1>
