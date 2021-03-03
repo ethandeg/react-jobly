@@ -1,5 +1,7 @@
 import {useState} from "react"
+import {useHistory} from "react-router-dom"
 const SignUpForm = ({signUp}) => {
+    const history = useHistory()
     const INITIAL_STATE = {username: '', password:'', firstName:'', lastName:'', email:''}
     const [formData, setFormData] = useState(INITIAL_STATE)
     const handleChange = (e) => {
@@ -13,7 +15,9 @@ const SignUpForm = ({signUp}) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         let res = await signUp(formData)
-        console.log(res)
+        if(res.success){
+            history.push('/')
+        }
         return res
     }
     return (

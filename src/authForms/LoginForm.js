@@ -1,7 +1,9 @@
 import {useState} from "react"
+import {useHistory} from "react-router-dom"
 import JoblyApi from "../API"
 const LoginForm = ({login}) => {
     const INITIAL_STATE = {username: '', password:''}
+    const history = useHistory()
     const [formData, setFormData] = useState(INITIAL_STATE)
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -14,8 +16,9 @@ const LoginForm = ({login}) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         let res = await login(formData)
-        console.log(res)
-        return res
+        if(res.success){
+            history.push('/')
+        }
     }
     return (
         <>

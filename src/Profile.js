@@ -1,12 +1,15 @@
 import {useContext} from "react"
+import {useHistory} from "react-router-dom"
 import TokenContext from "./context/TokenContext"
 import JoblyApi from "./API"
 const Profile = ({logout}) => {
+    const history = useHistory()
     const {token, setToken} = useContext(TokenContext)
     const handleLogoutButtonClick = () => {
-        console.log(JoblyApi.token)
-        logout()
-        console.log(JoblyApi.token)
+        let res = logout()
+        if(res.success){
+            history.push('/')
+        }
     }
     return (
         <>

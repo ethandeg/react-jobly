@@ -26,10 +26,10 @@ function App() {
     try {
       let res = await JoblyApi.signUp(data)
       setToken(res.token)
-      return {sucess: true}
+      return {success: true}
     } catch(e) {
       console.error(e)
-      return {sucess:false}
+      return {success:false}
     }
   }
 
@@ -47,7 +47,7 @@ function App() {
     <div className = 'main'>
 
       <BrowserRouter>
-      <TokenContext.Provider value={token, setToken}>
+      <TokenContext.Provider value={{token, setToken}}>
         <NavBar />
         <Routes login={login} signUp={signUp} logout ={logout}/>
         </TokenContext.Provider>

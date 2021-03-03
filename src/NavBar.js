@@ -1,5 +1,8 @@
 import {NavLink} from "react-router-dom"
+import {useContext} from "react"
+import TokenContext from "./context/TokenContext"
 const NavBar = () => {
+    const {token, setToken} = useContext(TokenContext)
     return (
         <div className="wrapper">
             <nav id="sidebar">
@@ -18,15 +21,23 @@ const NavBar = () => {
                     <li>
                         <NavLink to ='/jobs'>Jobs</NavLink>
                     </li>
+                    {token ? 
+                    <li>
+                        <NavLink to ='/profile'>Profile</NavLink>
+                    </li>
+                    : 
+                    <>
                     <li>
                         <NavLink to ='/login'>Login</NavLink>
                     </li>
                     <li>
                         <NavLink to ='/signup'>Sign Up</NavLink>
                     </li>
-                    <li>
-                        <NavLink to ='/profile'>Profile</NavLink>
-                    </li>
+                    </>
+                    }
+
+
+
                 </ul>
             </nav>
         </div>
