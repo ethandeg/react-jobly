@@ -39,6 +39,7 @@ function App() {
   const logout = () => {
     JoblyApi.token = null;
     setToken(null)
+    localStorage.clear()
     return {success: true}
   }
 
@@ -48,6 +49,9 @@ useEffect(() => {
       const {username} = jwt.decode(token)
       let res = await JoblyApi.getCurrentUser(username)
       setCurrentUser(res)
+      let user = res
+      user.token = token
+      localStorage.setItem('currUser', JSON.stringify(user))
     }
   }
   getCurentUser()
