@@ -48,18 +48,7 @@ class JoblyApi {
   }
 
   static async getAllJobs(filters) { 
-    //filter jobs by    
-    //  "minSalary": {
-    //   "type": "integer",
-    //   "minimum": 0
-    // },
-    // "hasEquity": {
-    //   "type": "boolean"
-    // },
-    // "title": {
-    //   "type": "string",
-    //   "minLength": 1
-    // }
+
     let res = await this.request('jobs', filters)
     return res.jobs
   }
@@ -82,6 +71,11 @@ class JoblyApi {
     JoblyApi.token = res.token
     console.log(JoblyApi.token)
     return res
+  }
+
+  static async getCurrentUser (username) {
+    let res = await this.request(`users/${username}`)
+    return res.user
   }
 
   // obviously, you'll add a lot here ...

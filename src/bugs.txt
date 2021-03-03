@@ -3,3 +3,5 @@ Known bugs ***********
 Need at least one character if title and name field of company/job forms in order for it to submit right
 
 if a get doesn't come back with a response, then it says loading forever
+
+currUser and setcurruser state context provider doesn't seem to be working right

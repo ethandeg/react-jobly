@@ -8,7 +8,7 @@ import LoginForm from "./authForms/LoginForm"
 import SignUpForm from "./authForms/SignUpForm"
 import Profile from "./Profile"
 
-const Routes = ({login, signUp, logout}) => {
+const Routes = ({login, signUp, logout, users}) => {
     return (
         <>
         <Route exact path="/"> <Home /></Route>
