@@ -5,6 +5,7 @@ import Routes from "./Routes"
 import NavBar from "./NavBar"
 import JoblyApi from "./API"
 import {useState} from "react"
+import TokenContext from "./context/TokenContext"
 
 function App() {
   const [token, setToken] = useState()
@@ -13,7 +14,6 @@ function App() {
     try {
       let res = await JoblyApi.login(data)
       setToken(res.token)
-      console.log(token)
       return {success: true}
     } catch(e) {
       console.error(e)
@@ -21,17 +21,36 @@ function App() {
     }
 
   }
+
+  const signUp = async(data) => {
+    try {
+      let res = await JoblyApi.signUp(data)
+      setToken(res.token)
+      return {sucess: true}
+    } catch(e) {
+      console.error(e)
+      return {sucess:false}
+    }
+  }
+
+  const logout = () => {
+    JoblyApi.token = null;
+    setToken(null)
+    console.log(token)
+    console.log(JoblyApi.token)
+    return {success: true}
+  }
   //maybe make a separate file for these functions and put them on context so can be accessed anywhere
 
-  const logout = async() => {
 
-  }
   return (
     <div className = 'main'>
 
       <BrowserRouter>
+      <TokenContext.Provider value={token, setToken}>
         <NavBar />
-        <Routes />
+        <Routes login={login} signUp={signUp} logout ={logout}/>
+        </TokenContext.Provider>
       </BrowserRouter>
     </div>
   );

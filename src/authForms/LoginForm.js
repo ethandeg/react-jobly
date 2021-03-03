@@ -1,6 +1,6 @@
 import {useState} from "react"
 import JoblyApi from "../API"
-const LoginForm = () => {
+const LoginForm = ({login}) => {
     const INITIAL_STATE = {username: '', password:''}
     const [formData, setFormData] = useState(INITIAL_STATE)
     const handleChange = (e) => {
@@ -13,7 +13,7 @@ const LoginForm = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        let res = await JoblyApi.login(formData)
+        let res = await login(formData)
         console.log(res)
         return res
     }

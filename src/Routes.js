@@ -8,7 +8,7 @@ import LoginForm from "./authForms/LoginForm"
 import SignUpForm from "./authForms/SignUpForm"
 import Profile from "./Profile"
 
-const Routes = () => {
+const Routes = ({login, signUp, logout}) => {
     return (
         <>
         <Route exact path="/"> <Home /></Route>
@@ -16,9 +16,9 @@ const Routes = () => {
         <Route exact path ="/companies/:handle"> <CompanyPage /></Route>
         <Route exact path ="/jobs"> <Jobs /></Route>
         <Route exact path = "/jobs/:id"> <JobPage /></Route>
-        <Route exact path = "/login"> <LoginForm /></Route>
-        <Route exact path = "/signup"> <SignUpForm /></Route>
-        <Route exact path = "/profile"> <Profile /></Route>
+        <Route exact path = "/login"> <LoginForm login={login}/></Route>
+        <Route exact path = "/signup"> <SignUpForm signUp={signUp}/></Route>
+        <Route exact path = "/profile"> <Profile logout={logout}/></Route>
         </>
     )
 }
