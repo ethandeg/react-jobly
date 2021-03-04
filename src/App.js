@@ -16,6 +16,7 @@ function App() {
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID)
   const [currentUser, setCurrentUser] = useState(null)
   const [userInfoLoaded, setUserInfoLoaded] = useState(false)
+  const [applications, setApplications] = useState(new Set())
 
 
 
@@ -66,6 +67,7 @@ useEffect(() => {
       let res = await JoblyApi.getCurrentUser(username)
       res.token = token
       setCurrentUser(res)
+      setApplications(res.applications)
     }
 
   }
@@ -84,7 +86,7 @@ useEffect(() => {
       ?
       <BrowserRouter>
       <TokenContext.Provider value={{token, setToken}}>
-          <UserContext.Provider value={{currentUser, setCurrentUser}}>
+          <UserContext.Provider value={{currentUser, setCurrentUser, applications, setApplications}}>
         <NavBar />
         <Routes login={login} signUp={signUp} logout ={logout}/>
           </UserContext.Provider>

@@ -1,8 +1,11 @@
-import {useEffect, useState} from "react"
+import {useEffect, useState, useContext} from "react"
 import JoblyApi from "../API"
 import Job from "./Job"
 import JobSearchForm from "./JobSearchForm"
+import UserContext from "../context/UserContext"
+
 const Jobs = () => {
+    const {applications, setApplications} = useContext(UserContext)
     const [jobs, setJobs] = useState([])
     useEffect(() => {
         const getAllJobs = async() => {
