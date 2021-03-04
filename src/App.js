@@ -76,10 +76,12 @@ useEffect(() => {
 
 
   //maybe make a separate file for these functions and put them on context so can be accessed anywhere
-if(!userInfoLoaded) return <h1>loading....</h1> 
+
 
   return (
     <div className = 'main'>
+      {userInfoLoaded 
+      ?
       <BrowserRouter>
       <TokenContext.Provider value={{token, setToken}}>
           <UserContext.Provider value={{currentUser, setCurrentUser}}>
@@ -88,7 +90,11 @@ if(!userInfoLoaded) return <h1>loading....</h1>
           </UserContext.Provider>
       </TokenContext.Provider>
       </BrowserRouter>
-    </div>
+ 
+       :
+       <h1>Loading...</h1>
+       }
+     </div>
   );
 }
 

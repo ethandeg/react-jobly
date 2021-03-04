@@ -17,10 +17,10 @@ const Routes = ({login, signUp, logout, users}) => {
             <PrivateRoute exact path ="/companies"> <Companies /></PrivateRoute>
             <PrivateRoute exact path ="/companies/:handle"> <CompanyPage /></PrivateRoute>
             <PrivateRoute exact path ="/jobs"> <Jobs /></PrivateRoute>
-            <Route exact path = "/jobs/:id"> <JobPage /></Route>
+            <PrivateRoute exact path = "/jobs/:id"> <JobPage /></PrivateRoute>
             <Route exact path = "/login"> <LoginForm login={login}/></Route>
             <Route exact path = "/signup"> <SignUpForm signUp={signUp}/></Route>
-            <Route exact path = "/profile"> <Profile logout={logout}/></Route>
+            <PrivateRoute exact path = "/profile"> <Profile logout={logout}/></PrivateRoute>
         </Switch>
         </>
     )

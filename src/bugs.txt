@@ -4,3 +4,5 @@ Need at least one character if title and name field of company/job forms in orde
 
 if a get doesn't come back with a response, then it says loading forever
 
+Reloading on page that requires currentuser not on home page causes an error
+
