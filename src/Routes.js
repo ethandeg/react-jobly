@@ -1,4 +1,4 @@
-import {Route} from "react-router-dom"
+import {Route, Switch} from "react-router-dom"
 import Home from "./Home"
 import Companies from "./companyComponents/Companies"
 import CompanyPage from "./companyComponents/CompanyPage"
@@ -7,18 +7,21 @@ import JobPage from "./jobComponents/JobPage"
 import LoginForm from "./authForms/LoginForm"
 import SignUpForm from "./authForms/SignUpForm"
 import Profile from "./Profile"
+import PrivateRoute from "./PrivateRoute"
 
 const Routes = ({login, signUp, logout, users}) => {
     return (
         <>
-        <Route exact path="/"> <Home /></Route>
-        <Route exact path ="/companies"> <Companies /></Route>
-        <Route exact path ="/companies/:handle"> <CompanyPage /></Route>
-        <Route exact path ="/jobs"> <Jobs /></Route>
-        <Route exact path = "/jobs/:id"> <JobPage /></Route>
-        <Route exact path = "/login"> <LoginForm login={login}/></Route>
-        <Route exact path = "/signup"> <SignUpForm signUp={signUp}/></Route>
-        <Route exact path = "/profile"> <Profile logout={logout}/></Route>
+        <Switch>
+            <Route exact path="/"> <Home /></Route>
+            <PrivateRoute exact path ="/companies"> <Companies /></PrivateRoute>
+            <PrivateRoute exact path ="/companies/:handle"> <CompanyPage /></PrivateRoute>
+            <PrivateRoute exact path ="/jobs"> <Jobs /></PrivateRoute>
+            <Route exact path = "/jobs/:id"> <JobPage /></Route>
+            <Route exact path = "/login"> <LoginForm login={login}/></Route>
+            <Route exact path = "/signup"> <SignUpForm signUp={signUp}/></Route>
+            <Route exact path = "/profile"> <Profile logout={logout}/></Route>
+        </Switch>
         </>
     )
 }
