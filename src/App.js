@@ -8,11 +8,17 @@ import {useState, useEffect} from "react"
 import TokenContext from "./context/TokenContext"
 import UserContext from "./context/UserContext"
 import jwt from "jsonwebtoken"
+import useLocalStorage from "./hooks/useLocalStorage"
+
+const TOKEN_STORAGE_ID = 'currUser'
 
 function App() {
-  const [token, setToken] = useState()
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID)
   const [currentUser, setCurrentUser] = useState(null)
   const [userInfoLoaded, setUserInfoLoaded] = useState(false)
+
+
+
   const login = async(data) => {
     try {
       let res = await JoblyApi.login(data)
@@ -39,28 +45,38 @@ function App() {
   const logout = () => {
     JoblyApi.token = null;
     setToken(null)
-    localStorage.clear()
     return {success: true}
   }
+///on load:
+//-should check local storage for token
+    //if not token, then should redirect to login page or something
+    //else, should make a loading screen
+        //request to get user info and set the info to state
+        //set userinfoloaded to true
+
+
+
+
 
 useEffect(() => {
   const getCurentUser = async() => {
     if(token) {
       const {username} = jwt.decode(token)
+      JoblyApi.token = token
       let res = await JoblyApi.getCurrentUser(username)
+      res.token = token
       setCurrentUser(res)
-      let user = res
-      user.token = token
-      localStorage.setItem('currUser', JSON.stringify(user))
     }
+
   }
   getCurentUser()
+  setUserInfoLoaded(true)
 }, [token])
 
 
 
   //maybe make a separate file for these functions and put them on context so can be accessed anywhere
-
+if(!userInfoLoaded) return <h1>loading....</h1> 
 
   return (
     <div className = 'main'>
