@@ -6,3 +6,5 @@ if a get doesn't come back with a response, then it says loading forever
 
 Reloading on page that requires currentuser not on home page causes an error
 
+Btn text on job pages doesn't load right based on application, should also remove button if applied probably
+

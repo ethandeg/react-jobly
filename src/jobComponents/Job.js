@@ -3,24 +3,25 @@ import {useContext, useState, useEffect} from "react"
 import UserContext from "../context/UserContext"
 import JoblyApi from "../API"
 const Job = ({job}) => {
-        const {applyToJob, hasAppliedToJob, currentUser} = useContext(UserContext)
-        const [applied, setApplied] = useState();
+        const {applyToJob, hasAppliedToJob, currentUser, applications, setApplications} = useContext(UserContext)
       
-        useEffect(function updateAppliedStatus() {
-          setApplied(hasAppliedToJob(job.id));
-        }, [job.id, hasAppliedToJob]);
-      
+        // useEffect(function updateAppliedStatus() {
+        //   setApplied(hasAppliedToJob(job.id));
+        // }, [job.id, hasAppliedToJob]);
+        let btnText = applications.has(job.id) ? "Applied" : "Apply"
         /** Apply for a job */
         async function handleApply() {
           if (hasAppliedToJob(job.id)) return;
-          applyToJob(job.id);
-          setApplied(true);
+          let res = applyToJob(job.id);
+          setApplications(new Set([...applications, job.id]))
+          btnText = btnText = "Apply" ? "Applied" : "Apply"
         }
       
     //id, title, salary, equity, companyHandle, companyName from get all, job.company.name and job.company.handle from get one
     let companyName = job.companyName ? job.companyName : job.company.name
     let companyHandle = job.companyHandle ? job.companyHandle : job.company.handle
-    const btnText = hasAppliedToJob(job.id) ? "Applied" : "Apply"
+
+
     // const handleApply = async() => {
     //     try {
     //         let res = await JoblyApi.apply(currentUser.username, job.id)

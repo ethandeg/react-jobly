@@ -57,7 +57,7 @@ function App() {
   function applyToJob(id) {
     if (hasAppliedToJob(id)) return;
     JoblyApi.apply(currentUser.username, id);
-    setApplications(new Set([...applications, id]));
+    setApplications(new Set([...applications, id]))
   }
 ///on load:
 //-should check local storage for token
@@ -78,7 +78,7 @@ useEffect(() => {
       let res = await JoblyApi.getCurrentUser(username)
       res.token = token
       setCurrentUser(res)
-      setApplications(new Set([...applications, res.applications]))
+      setApplications(new Set([...res.applications]))
     }
 
   }
@@ -97,7 +97,7 @@ useEffect(() => {
       ?
       <BrowserRouter>
       <TokenContext.Provider value={{token, setToken}}>
-          <UserContext.Provider value={{currentUser, setCurrentUser, applyToJob, hasAppliedToJob}}>
+          <UserContext.Provider value={{currentUser, setCurrentUser, applyToJob, hasAppliedToJob, applications, setApplications}}>
         <NavBar />
         <Routes login={login} signUp={signUp} logout ={logout}/>
           </UserContext.Provider>

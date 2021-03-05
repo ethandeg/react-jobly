@@ -5,6 +5,8 @@ import JobSearchForm from "./JobSearchForm"
 import UserContext from "../context/UserContext"
 
 const Jobs = () => {
+    const {applications} = useContext(UserContext)
+    console.log(applications)
     const [jobs, setJobs] = useState([])
     useEffect(() => {
         const getAllJobs = async() => {
