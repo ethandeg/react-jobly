@@ -16,7 +16,7 @@ function App() {
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID)
   const [currentUser, setCurrentUser] = useState(null)
   const [userInfoLoaded, setUserInfoLoaded] = useState(false)
-  const [applications, setApplications] = useState(new Set())
+  const [applications, setApplications] = useState(new Set([]))
 
 
 
@@ -48,6 +48,17 @@ function App() {
     setToken(null)
     return {success: true}
   }
+
+  function hasAppliedToJob(id) {
+    return applications.has(id);
+  }
+
+  /** Apply to a job: make API call and update set of application IDs. */
+  function applyToJob(id) {
+    if (hasAppliedToJob(id)) return;
+    JoblyApi.apply(currentUser.username, id);
+    setApplications(new Set([...applications, id]));
+  }
 ///on load:
 //-should check local storage for token
     //if not token, then should redirect to login page or something
@@ -67,7 +78,7 @@ useEffect(() => {
       let res = await JoblyApi.getCurrentUser(username)
       res.token = token
       setCurrentUser(res)
-      setApplications(res.applications)
+      setApplications(new Set([...applications, res.applications]))
     }
 
   }
@@ -86,7 +97,7 @@ useEffect(() => {
       ?
       <BrowserRouter>
       <TokenContext.Provider value={{token, setToken}}>
-          <UserContext.Provider value={{currentUser, setCurrentUser, applications, setApplications}}>
+          <UserContext.Provider value={{currentUser, setCurrentUser, applyToJob, hasAppliedToJob}}>
         <NavBar />
         <Routes login={login} signUp={signUp} logout ={logout}/>
           </UserContext.Provider>
