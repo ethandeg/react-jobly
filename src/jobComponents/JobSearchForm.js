@@ -12,6 +12,7 @@ const JobSearchForm = ({search}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        if(!formData.title) delete formData.title
         search(formData)
         setFormData(INITIAL_STATE)
     }
@@ -21,7 +22,7 @@ const JobSearchForm = ({search}) => {
             <form className="form-control" onSubmit={handleSubmit}>
                 <label htmlFor="minSalary">Minimum Salary:</label>
                 <input type ="number" className="form-control" name="minSalary" id="minSalary" value={formData.minSalary} onChange={handleChange} />
-                <label htmlFor="minSalary">Has Equity:</label>
+                <label htmlFor="hasEquity">Has Equity:</label>
                 <input type ="checkbox" name="hasEquity" id="hasEquity" value={formData.hasEquity} onChange={handleChange} />
                 <p>
                 <label htmlFor="title">Job Title:</label>
