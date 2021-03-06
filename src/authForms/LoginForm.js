@@ -22,14 +22,26 @@ const LoginForm = ({login}) => {
     }
     return (
         <>
-        <h1>Hello, World from the login form</h1>
-        <form className = "form-control" onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input className = "form-control" type="text" name='username' id='username' value = {formData.username}onChange={handleChange} />
-            <label htmlFor="password">Password:</label>
-            <input className = "form-control" type="password" name='password' id='password' value={formData.password} onChange={handleChange} />
-            <button>Login</button>
-        </form>
+        <div className="container" style={{textAlign: "center"}}>
+        <h1 className="my-5 display-1 text-info" style={{display:"block"}}>Login</h1>
+        <div className = "col-md-6 col-lg-4 container" style={{fontWeight: 600}}>
+        <div className="card">
+            <div className="card-body">
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                <label htmlFor="username">Username:</label>
+                <input type = "text" name="username" id="username" value={formData.username} onChange={handleChange} className="form-control"/>
+                </div>
+                <div className="form-group">
+                <label htmlFor="password">Password:</label>
+                <input type = "password" name="passwordfirstName" id="password" value={formData.password} onChange={handleChange} className="form-control"/>
+                </div>
+                <button className='btn btn-primary w-100 mt-4'>Submit</button>
+            </form>
+            </div>
+            </div>
+        </div>
+        </div>
         </>
     )
 }

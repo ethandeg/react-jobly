@@ -18,16 +18,27 @@ const CompanySearchForm = ({search}) => {
     }
 
     return (
-        <div className="col-3" style={{marginLeft: "37.5%", marginRight: "37.5%"}}>
-        <form className = "form-control" onSubmit={handleSubmit}>
-            <label htmlFor="name">Company Name:</label>
-            <input type='text' className="form-control" name="name" id='name' value={formData.name} onChange={handleChange} />
-            <label htmlFor="minEmployees">Minimum Employees:</label>
-            <input type='number' className="form-control" name="minEmployees" id='minEmployees' value={formData.minEmployees} onChange={handleChange} />
-            <label htmlFor="maxEmployees">Maximum Employees:</label>
-            <input type='number' className="form-control" name="maxEmployees" id='maxEmployees' value={formData.maxEmployees} onChange={handleChange} />
-            <button className="btn btn-outline-primary">Submit</button>
-        </form>
+        <div className="col-3 mt-4" style={{marginLeft: "37.5%", marginRight: "37.5%"}}>
+            <div className="card">
+                <div className="card-body">
+                <form className = "form-control" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                    <label htmlFor="name">Company Name:</label>
+                    <input type='text' className="form-control" name="name" id='name' value={formData.name} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                    <label htmlFor="minEmployees">Minimum Employees:</label>
+                    <input type='number' className="form-control" name="minEmployees" id='minEmployees' value={formData.minEmployees} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                    <label htmlFor="maxEmployees">Maximum Employees:</label>
+                    <input type='number' className="form-control" name="maxEmployees" id='maxEmployees' value={formData.maxEmployees} onChange={handleChange} />
+                    </div>
+                    <button className="btn btn-outline-primary mt-2">Submit</button>
+                </form>
+                </div>
+            </div>
+
         </div>
     )
 }

@@ -23,18 +23,29 @@ const JobSearchForm = ({search}) => {
     }
 
     return (
-        <div className="col-3">
-            <form className="form-control" onSubmit={handleSubmit}>
-                <label htmlFor="minSalary">Minimum Salary:</label>
-                <input type ="number" className="form-control" name="minSalary" id="minSalary" value={formData.minSalary} onChange={handleChange} />
-                <label htmlFor="hasEquity">Has Equity:</label>
-                <input type ="checkbox" name="hasEquity" id="hasEquity" value={true} ref={checkboxRef}onChange={handleChange} />
-                <p>
-                <label htmlFor="title">Job Title:</label>
-                <input type ="text" className="form-control" name="title" id="title"  onChange={handleChange} />
-                </p>
-                <button className ="btn btn-outline-success form-control">Submit</button>
-            </form>
+        <div className="col-3 mt-3 border border-3 container">
+            <div className="card">
+                <div className="card-body">
+
+                    <form className="form-control" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="minSalary">Minimum Salary:</label>
+                        <input type ="number" className="form-control" name="minSalary" id="minSalary" value={formData.minSalary} onChange={handleChange} />
+                    </div> 
+                    <div className="form-group">
+                        <label htmlFor="hasEquity">Has Equity:</label>
+                        <input type ="checkbox" name="hasEquity" id="hasEquity" value={true} ref={checkboxRef}onChange={handleChange} />
+                    </div>
+                        <p>
+                        <label htmlFor="title">Job Title:</label>
+                        <input type ="text" className="form-control" name="title" id="title"  onChange={handleChange} />
+                        </p>
+                        <button className ="btn btn-outline-success form-control">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+
         </div>
     )
 }

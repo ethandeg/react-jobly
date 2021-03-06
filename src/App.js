@@ -96,7 +96,7 @@ useEffect(() => {
       <BrowserRouter>
       <TokenContext.Provider value={{token, setToken}}>
           <UserContext.Provider value={{currentUser, setCurrentUser, applyToJob, hasAppliedToJob, applications, setApplications}}>
-        <NavBar />
+        <NavBar logout={logout}/>
         <Routes login={login} signUp={signUp} logout ={logout}/>
           </UserContext.Provider>
       </TokenContext.Provider>
