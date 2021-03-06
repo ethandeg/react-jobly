@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useState, useRef} from "react"
 
 const CompanySearchForm = ({search}) => {
     const INITIAL_STATE = {name: '', minEmployees: 0, maxEmployees: 0}
@@ -12,6 +12,7 @@ const CompanySearchForm = ({search}) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
+        if(!formData.name) delete formData.name
         search(formData)
         setFormData(INITIAL_STATE)
     }
