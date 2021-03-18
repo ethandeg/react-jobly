@@ -1,10 +1,11 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import logo from "./assets/logo.png"
 import './App.css';
-import {BrowserRouter} from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 import Routes from "./Routes"
 import NavBar from "./NavBar"
 import JoblyApi from "./API"
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import TokenContext from "./context/TokenContext"
 import UserContext from "./context/UserContext"
 import jwt from "jsonwebtoken"
@@ -20,33 +21,33 @@ function App() {
 
 
 
-  const login = async(data) => {
+  const login = async (data) => {
     try {
       let res = await JoblyApi.login(data)
       setToken(res.token)
-      return {success: true}
-    } catch(e) {
+      return { success: true }
+    } catch (e) {
       console.error(e)
-      return {success: false}
+      return { success: false }
     }
 
   }
 
-  const signUp = async(data) => {
+  const signUp = async (data) => {
     try {
       let res = await JoblyApi.signUp(data)
       setToken(res.token)
-      return {success: true}
-    } catch(e) {
+      return { success: true }
+    } catch (e) {
       console.error(e)
-      return {success:false}
+      return { success: false }
     }
   }
 
   const logout = () => {
     JoblyApi.token = null;
     setToken(null)
-    return {success: true}
+    return { success: true }
   }
 
   function hasAppliedToJob(id) {
@@ -59,49 +60,49 @@ function App() {
     JoblyApi.apply(currentUser.username, id);
     setApplications(new Set([...applications, id]))
   }
-///on load:
-//-should check local storage for token
-    //if not token, then should redirect to login page or something
-    //else, should make a loading screen
-        //request to get user info and set the info to state
-        //set userinfoloaded to true
+  ///on load:
+  //-should check local storage for token
+  //if not token, then should redirect to login page or something
+  //else, should make a loading screen
+  //request to get user info and set the info to state
+  //set userinfoloaded to true
 
 
 
 
 
-useEffect(() => {
-  const getCurentUser = async() => {
-    if(token) {
-      const {username} = jwt.decode(token)
-      JoblyApi.token = token
-      let res = await JoblyApi.getCurrentUser(username)
-      res.token = token
-      setCurrentUser(res)
-      setApplications(new Set([...res.applications]))
+  useEffect(() => {
+    const getCurentUser = async () => {
+      if (token) {
+        const { username } = jwt.decode(token)
+        JoblyApi.token = token
+        let res = await JoblyApi.getCurrentUser(username)
+        res.token = token
+        setCurrentUser(res)
+        setApplications(new Set([...res.applications]))
+      }
+
     }
-
-  }
-  getCurentUser()
-  setUserInfoLoaded(true)
-}, [token])
+    getCurentUser()
+    setUserInfoLoaded(true)
+  }, [token])
 
 
 
   //maybe make a separate file for these functions and put them on context so can be accessed anywhere
-  if(!userInfoLoaded) return <h1>Loading....</h1>
+  if (!userInfoLoaded) return <h1>Loading....</h1>
 
   return (
-    <div className = 'main'>
+    <div className='main'>
       <BrowserRouter>
-      <TokenContext.Provider value={{token, setToken}}>
-          <UserContext.Provider value={{currentUser, setCurrentUser, applyToJob, hasAppliedToJob, applications, setApplications}}>
-        <NavBar logout={logout}/>
-        <Routes login={login} signUp={signUp} logout ={logout}/>
+        <TokenContext.Provider value={{ token, setToken }}>
+          <UserContext.Provider value={{ currentUser, setCurrentUser, applyToJob, hasAppliedToJob, applications, setApplications }}>
+            <NavBar logout={logout} />
+            <Routes login={login} signUp={signUp} logout={logout} />
           </UserContext.Provider>
-      </TokenContext.Provider>
+        </TokenContext.Provider>
       </BrowserRouter>
-     </div>
+    </div>
   );
 }
 
